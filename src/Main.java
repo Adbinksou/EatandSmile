@@ -1,5 +1,17 @@
+import LoginChoicePage.LoginChoicePage;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Image;
 
 public class Main {
     public static void main(String[] args) {
@@ -55,11 +67,31 @@ public class Main {
         titleLabel.setForeground(Color.decode("#cd545b"));
 
 
-        // Ajout du bouton "Qui sommes nous"
+        // Création du bouton "Qui sommes nous ?"
         JButton quiSommesNousButton = new JButton("Qui sommes nous ?");
         quiSommesNousButton.setFont(new Font("Arial", Font.PLAIN, 22));
         centerPanel.add(quiSommesNousButton, BorderLayout.AFTER_LAST_LINE);
         quiSommesNousButton.setForeground(Color.decode("#cd545b"));
+
+        // Ajout de l'actionListener au bouton "Qui sommes nous ?"
+        quiSommesNousButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Création et affichage de la page "Qui sommes nous ?"
+                QuiSommesNousPage quiSommesNousPage = new QuiSommesNousPage();
+                quiSommesNousPage.setVisible(true);
+            }
+        });
+
+        // Ajout de l'actionListener au bouton "Se connecter"
+        connexionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Création et affichage de la page "Se connecter"
+                LoginChoicePage LoginChoicePage = new LoginChoicePage();
+                LoginChoicePage.setVisible(true);
+            }
+        });
 
         // Création du panel pour le bas de la page
         JPanel bottomPanel = new JPanel(new BorderLayout());

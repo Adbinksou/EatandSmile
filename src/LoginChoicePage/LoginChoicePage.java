@@ -4,13 +4,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginChoicePage {
+public class LoginChoicePage extends JFrame {
     public static void main(String[] args) {
-        // Création de la fenêtre principale
-        JFrame frame = new JFrame("EAT & SMILE - Connexion");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
-        frame.setLayout(new BorderLayout());
+        LoginChoicePage loginChoicePage = new LoginChoicePage();
+        loginChoicePage.setVisible(true);
+    }
+
+    public LoginChoicePage() {
+        super("EAT & SMILE - Connexion");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 600);
+        setLayout(new BorderLayout());
 
         // Création du panel pour le haut de la page
         JPanel topPanel = new JPanel(new BorderLayout());
@@ -39,7 +43,7 @@ public class LoginChoicePage {
         topPanel.add(logoPanel, BorderLayout.EAST);
 
         // Ajout du panel supérieur à la fenêtre principale
-        frame.add(topPanel, BorderLayout.NORTH);
+        add(topPanel, BorderLayout.NORTH);
 
         // Création du panel pour le centre de la page
         JPanel centerPanel = new JPanel(new GridLayout(3, 1, 10, 10));
@@ -78,7 +82,7 @@ public class LoginChoicePage {
         centerPanel.add(fournisseurButton);
 
         // Ajout du panel central à la fenêtre principale
-        frame.add(centerPanel, BorderLayout.CENTER);
+        add(centerPanel, BorderLayout.CENTER);
 
         // Création du panel pour le bas de la page
         JPanel bottomPanel = new JPanel(new BorderLayout());
@@ -102,7 +106,7 @@ public class LoginChoicePage {
         bottomPanel.add(quiSommesNousButton, BorderLayout.CENTER);
         quiSommesNousButton.setFont(new Font("Arial", Font.PLAIN, 22));
         quiSommesNousButton.setForeground(Color.decode("#cd545b"));
-
+/*
         // Ajout du panel inférieur à la fenêtre principale
         frame.add(bottomPanel, BorderLayout.SOUTH);
         bottomPanel.setPreferredSize(new Dimension(800, 80));
@@ -110,5 +114,19 @@ public class LoginChoicePage {
 
         // Affichage de la fenêtre
         frame.setVisible(true);
+        */
+
+
+        // Création du pied de page (footer)
+        JPanel footerPanel = new JPanel(new BorderLayout());
+        footerPanel.setPreferredSize(new Dimension(800, 80));
+        footerPanel.setBackground(Color.decode("#cd545b"));
+
+        // Ajoutez ici le contenu spécifique du pied de page (footer)
+
+        add(footerPanel, BorderLayout.SOUTH);
+
+        setVisible(true);
+
     }
 }
