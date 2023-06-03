@@ -1,3 +1,5 @@
+package main.java;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -30,13 +32,13 @@ public class Application {
         JButton loginButton = createButton("Se connecter", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showLoginPage();
+                showConnexionFormPage();
             }
         });
         JButton registerButton = createButton("S'inscrire", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showRegistrationPage();
+                showInscriptionFormPage();
             }
         });
         JButton descriptionButton = createButton("Description", new ActionListener() {
@@ -47,7 +49,7 @@ public class Application {
         });
         buttonPanel.add(loginButton);
         buttonPanel.add(registerButton);
-        buttonPanel.add((descriptionButton));
+        buttonPanel.add(descriptionButton);
         centerPanel.add(buttonPanel, BorderLayout.NORTH);
 
         // Texte
@@ -72,19 +74,27 @@ public class Application {
 
         updateContentPane(panel);
     }
-    private void showRegistrationPage() {
-        InscriptionPage inscriptionPage = new InscriptionPage(this);
-        JPanel panel = inscriptionPage.showInscriptionPage();
+
+    private void showInscriptionFormPage() {
+        InscriptionFormPage inscriptionFormPage = new InscriptionFormPage(this);
+        JPanel panel = inscriptionFormPage.createInscriptionFormPage();
 
         updateContentPane(panel);
     }
+
+    private void showConnexionFormPage() {
+        ConnexionFormPage connexionFormPage = new ConnexionFormPage(this);
+        JPanel panel = connexionFormPage.createConnexionFormPage();
+
+        updateContentPane(panel);
+    }
+
     private void showDescriptionPage() {
         DescriptionPage descriptionPage = new DescriptionPage(this);
         JPanel panel = descriptionPage.createDescriptionPage();
 
         updateContentPane(panel);
     }
-
 
     JPanel createHeaderPanel() {
         JPanel headerPanel = new JPanel(new BorderLayout());
@@ -139,3 +149,7 @@ public class Application {
         });
     }
 }
+
+
+
+
