@@ -21,6 +21,13 @@ public class DescriptionPage {
         JPanel headerPanel = application.createHeaderPanel();
         panel.add(headerPanel, BorderLayout.NORTH);
 
+        // Footer
+        JPanel footerPanel = application.createFooterPanel();
+        panel.add(footerPanel, BorderLayout.SOUTH);
+
+        application.frame.setContentPane(panel);
+        application.frame.setVisible(true);
+
         // Contenu de la page
         JPanel contentPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         contentPanel.add(new JLabel("Page de description"));

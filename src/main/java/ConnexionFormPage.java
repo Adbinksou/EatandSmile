@@ -22,6 +22,13 @@ public class ConnexionFormPage {
         // Contenu de la page
         JPanel contentPanel = new JPanel(new BorderLayout());
 
+        // Footer
+        JPanel footerPanel = application.createFooterPanel();
+        panel.add(footerPanel, BorderLayout.SOUTH);
+
+        application.frame.setContentPane(panel);
+        application.frame.setVisible(true);
+
         // Formulaire de connexion
         JPanel formPanel = new JPanel(new GridLayout(3, 2, 10, 10));
 
@@ -52,9 +59,10 @@ public class ConnexionFormPage {
                 if (loginSuccessful) {
                     // Afficher un message de succès
                     JOptionPane.showMessageDialog(panel, "Connexion réussie!");
+                    application.showRestaurantChoicesPage();
 
-                    // Revenir à la page d'accueil
-                    application.showHomePage();
+
+
                 } else {
                     // Afficher un message d'erreur
                     JOptionPane.showMessageDialog(panel, "Échec de la connexion. Veuillez vérifier vos informations.");
@@ -73,6 +81,6 @@ public class ConnexionFormPage {
         // Par exemple, vérifiez si l'email et le mot de passe correspondent à un utilisateur enregistré dans une base de données
         // Pour l'exemple, nous allons simplement vérifier si l'email est "user@example.com" et le mot de passe est "password"
 
-        return email.equals("user@example.com") && password.equals("password");
+        return email.equals("admin") && password.equals("admin");
     }
 }

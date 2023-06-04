@@ -6,8 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Application {
-    private JFrame frame;
+    JFrame frame;
     private JPanel currentPanel;
+    private String selectedRestaurant;
 
     public Application() {
         frame = new JFrame("Application de navigation");
@@ -66,6 +67,7 @@ public class Application {
 
         frame.setContentPane(panel);
         frame.setVisible(true);
+
     }
 
     private void showLoginPage() {
@@ -96,6 +98,18 @@ public class Application {
         updateContentPane(panel);
     }
 
+    void showRestaurantChoicesPage() {
+        RestaurantChoicePage restaurantChoicePage = new RestaurantChoicePage(this);
+        JPanel panel = restaurantChoicePage.showRestaurantChoicesPage();
+
+        updateContentPane(panel);
+    }
+    void showPlatChoicePage(String selectedRestaurant) {
+        PlatChoicePage platChoicePage = new PlatChoicePage(this, selectedRestaurant);
+        JPanel panel = platChoicePage.showPlatChoicesPage();
+
+        updateContentPane(panel);
+    }
     JPanel createHeaderPanel() {
         JPanel headerPanel = new JPanel(new BorderLayout());
 
@@ -116,7 +130,7 @@ public class Application {
         return headerPanel;
     }
 
-    private JPanel createFooterPanel() {
+    JPanel createFooterPanel() {
         JPanel footerPanel = new JPanel(new BorderLayout());
         footerPanel.setPreferredSize(new Dimension(800, 80));
         footerPanel.setBackground(Color.decode("#cd545b"));
@@ -140,6 +154,34 @@ public class Application {
         frame.repaint();
         currentPanel = panel;
     }
+    JPanel createHeaderPanelWithLogoAndHomeButton() {
+        JPanel headerPanel = new JPanel(new BorderLayout());
+        headerPanel.setBackground(Color.decode("#ff9e1b"));
+        headerPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        // Bouton Accueil
+        JButton homeButton = createButton("Accueil", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               showHomePage();
+            }
+        });
+        headerPanel.add(homeButton, BorderLayout.WEST);
+
+        // Logo à droite
+        ImageIcon logoIcon = new ImageIcon("image/logo1.png");
+        Image image = logoIcon.getImage().getScaledInstance(75, 70, Image.SCALE_SMOOTH);
+        logoIcon = new ImageIcon(image);
+        JLabel logoLabel = new JLabel("", logoIcon, JLabel.RIGHT);
+        JPanel logoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        logoPanel.setBackground(Color.decode("#ff9e1b"));
+        logoPanel.add(logoLabel);
+        headerPanel.add(logoPanel, BorderLayout.EAST);
+
+
+
+        return headerPanel;
+    }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -148,6 +190,8 @@ public class Application {
             }
         });
     }
+
+
 }
 
 
