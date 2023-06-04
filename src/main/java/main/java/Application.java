@@ -163,7 +163,7 @@ public class Application {
         JButton homeButton = createButton("Accueil", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showHomePage();
+               showHomePage();
             }
         });
         headerPanel.add(homeButton, BorderLayout.WEST);
