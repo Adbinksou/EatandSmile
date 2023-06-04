@@ -1,11 +1,14 @@
+package main.java;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Application {
-    private JFrame frame;
+    JFrame frame;
     private JPanel currentPanel;
+    private String selectedRestaurant;
 
     public Application() {
         frame = new JFrame("Application de navigation");
@@ -30,13 +33,13 @@ public class Application {
         JButton loginButton = createButton("Se connecter", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showLoginPage();
+                showConnexionFormPage();
             }
         });
         JButton registerButton = createButton("S'inscrire", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showRegistrationPage();
+                showInscriptionFormPage();
             }
         });
         JButton descriptionButton = createButton("Description", new ActionListener() {
@@ -47,7 +50,7 @@ public class Application {
         });
         buttonPanel.add(loginButton);
         buttonPanel.add(registerButton);
-        buttonPanel.add((descriptionButton));
+        buttonPanel.add(descriptionButton);
         centerPanel.add(buttonPanel, BorderLayout.NORTH);
 
         // Texte
@@ -64,6 +67,7 @@ public class Application {
 
         frame.setContentPane(panel);
         frame.setVisible(true);
+
     }
 
     private void showLoginPage() {
@@ -72,12 +76,21 @@ public class Application {
 
         updateContentPane(panel);
     }
-    private void showRegistrationPage() {
-        InscriptionPage inscriptionPage = new InscriptionPage(this);
-        JPanel panel = inscriptionPage.showInscriptionPage();
+
+    private void showInscriptionFormPage() {
+        InscriptionFormPage inscriptionFormPage = new InscriptionFormPage(this);
+        JPanel panel = inscriptionFormPage.createInscriptionFormPage();
 
         updateContentPane(panel);
     }
+
+    private void showConnexionFormPage() {
+        ConnexionFormPage connexionFormPage = new ConnexionFormPage(this);
+        JPanel panel = connexionFormPage.createConnexionFormPage();
+
+        updateContentPane(panel);
+    }
+
     private void showDescriptionPage() {
         DescriptionPage descriptionPage = new DescriptionPage(this);
         JPanel panel = descriptionPage.createDescriptionPage();
@@ -85,7 +98,18 @@ public class Application {
         updateContentPane(panel);
     }
 
+    void showRestaurantChoicesPage() {
+        RestaurantChoicePage restaurantChoicePage = new RestaurantChoicePage(this);
+        JPanel panel = restaurantChoicePage.showRestaurantChoicesPage();
 
+        updateContentPane(panel);
+    }
+    void showPlatChoicePage(String selectedRestaurant) {
+        PlatChoicePage platChoicePage = new PlatChoicePage(this, selectedRestaurant);
+        JPanel panel = platChoicePage.showPlatChoicesPage();
+
+        updateContentPane(panel);
+    }
     JPanel createHeaderPanel() {
         JPanel headerPanel = new JPanel(new BorderLayout());
 
@@ -106,7 +130,7 @@ public class Application {
         return headerPanel;
     }
 
-    private JPanel createFooterPanel() {
+    JPanel createFooterPanel() {
         JPanel footerPanel = new JPanel(new BorderLayout());
         footerPanel.setPreferredSize(new Dimension(800, 80));
         footerPanel.setBackground(Color.decode("#cd545b"));
@@ -130,6 +154,34 @@ public class Application {
         frame.repaint();
         currentPanel = panel;
     }
+    JPanel createHeaderPanelWithLogoAndHomeButton() {
+        JPanel headerPanel = new JPanel(new BorderLayout());
+        headerPanel.setBackground(Color.decode("#ff9e1b"));
+        headerPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        // Bouton Accueil
+        JButton homeButton = createButton("Accueil", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               showHomePage();
+            }
+        });
+        headerPanel.add(homeButton, BorderLayout.WEST);
+
+        // Logo à droite
+        ImageIcon logoIcon = new ImageIcon("image/logo1.png");
+        Image image = logoIcon.getImage().getScaledInstance(75, 70, Image.SCALE_SMOOTH);
+        logoIcon = new ImageIcon(image);
+        JLabel logoLabel = new JLabel("", logoIcon, JLabel.RIGHT);
+        JPanel logoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        logoPanel.setBackground(Color.decode("#ff9e1b"));
+        logoPanel.add(logoLabel);
+        headerPanel.add(logoPanel, BorderLayout.EAST);
+
+
+
+        return headerPanel;
+    }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -138,4 +190,10 @@ public class Application {
             }
         });
     }
+
+
 }
+
+
+
+

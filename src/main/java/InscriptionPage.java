@@ -1,18 +1,20 @@
+package main.java;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DescriptionPage {
-
-
+public class InscriptionPage {
     private Application application;
 
-    public DescriptionPage(Application application) {
+    public InscriptionPage(Application application) {
         this.application = application;
     }
 
-    public JPanel createDescriptionPage() {
+
+
+    JPanel showInscriptionPage() {
         JPanel panel = new JPanel(new BorderLayout());
 
         // En-tête
@@ -21,7 +23,7 @@ public class DescriptionPage {
 
         // Contenu de la page
         JPanel contentPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        contentPanel.add(new JLabel("Page de description"));
+        contentPanel.add(new JLabel("Page d'inscription"));
 
         // Bouton Accueil
         JButton homeButton = application.createButton("Accueil", new ActionListener() {
@@ -34,8 +36,8 @@ public class DescriptionPage {
 
         panel.add(contentPanel, BorderLayout.CENTER);
 
+        application.updateContentPane(panel);
         return panel;
     }
+
 }
-
-
